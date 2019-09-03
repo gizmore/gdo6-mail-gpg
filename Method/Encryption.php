@@ -14,6 +14,8 @@ use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Link;
 use GDO\User\GDO_User;
+use GDO\File\FileUtil;
+use GDO\Core\GDOException;
 /**
  * Setup GPG Mail Encryption.
  * Sends a test mail before key is saved.
@@ -32,6 +34,7 @@ final class Encryption extends MethodForm
 	
 	public function execute()
 	{
+		
 		$this->key = GDO_PublicKey::getKeyForUser(GDO_User::current());
 
 		$nav = Settings::make()->navModules();
@@ -82,17 +85,26 @@ final class Encryption extends MethodForm
 	public function formValidated(GDT_Form $form)
 	{
 		$user = GDO_User::current();
+
+		FileUtil::createDir(GDO_PATH . 'temp/gpg');
 		$outfile = GDO_PATH . 'temp/gpg/' . $user->getID();
+		
 		
 		# Get file or paste
 		$file_content = '';
-		$files = $form->getFormVar('gpg_file');
-		if (count($files)>0)
+		
+		/** @var $file \GDO\File\GDO_File **/
+		$file = $form->getFormValue('gpg_file');
+		
+		if ($file)
 		{
-			$file = $files[0];
-			$file_content = file_get_contents($file['path']);
+			$file_content = file_get_contents($file->path);
 		}
-		else { $file_content = $form->getFormVar('gpg_pubkey'); }
+		else
+		{
+			$file_content = $form->getFormVar('gpg_pubkey');
+		}
+		
 		$file_content = trim($file_content);
 		
 		
