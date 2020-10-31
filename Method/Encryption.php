@@ -37,14 +37,14 @@ final class Encryption extends MethodForm
 		
 		$this->key = GDO_PublicKey::getKeyForUser(GDO_User::current());
 
-		$nav = Settings::make()->navModules();
-		$tabs = Module_Account::instance()->renderAccountTabs();
+		Module_Account::instance()->renderAccountTabs();
+		Settings::make()->navModules();
 		
 		if (isset($_POST['btn_delete']))
 		{
-			return $tabs->add($nav)->add($this->onDelete()->add(parent::execute()));
+			return $this->onDelete()->add(parent::execute());
 		}
-		return $tabs->add($nav)->add(parent::execute());
+		return parent::execute();
 	}
 
 	public function createForm(GDT_Form $form)
