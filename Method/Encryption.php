@@ -53,16 +53,14 @@ final class Encryption extends MethodForm
 		$form->addField(GDO_PublicKey::table()->gdoColumn('gpg_pubkey'));
 		$form->addField(GDT_File::make('gpg_file')->label('gpg_file')->action($this->href()));
 		$form->addField(GDT_AntiCSRF::make());
-		$btns = GDT_Bar::make();
 		if ($this->key === null)
 		{
-			$btns->addField(GDT_Submit::make());
+			$form->actions()->addField(GDT_Submit::make());
 		}
 		else
 		{
-			$btns->addField(GDT_Submit::make('btn_delete'));
+			$form->actions()->addField(GDT_Submit::make('btn_delete'));
 		}
-		$form->addField($btns);
 		$form->withGDOValuesFrom($this->key);
 	}
 
