@@ -2,15 +2,17 @@
 namespace GDO\MailGPG;
 
 use GDO\Core\GDO;
-use GDO\UI\GDT_Message;
 use GDO\User\GDO_User;
 use GDO\User\GDT_User;
 use GDO\Core\Logger;
+use GDO\DB\GDT_Text;
 
 /**
  * Cryptographic public keys for users.
+ * 
  * @author gizmore
- * @since 4.0
+ * @version 6.10.2
+ * @since 4.0.0
  */
 final class GDO_PublicKey extends GDO
 {
@@ -19,10 +21,10 @@ final class GDO_PublicKey extends GDO
 	###########
 	public function gdoColumns()
 	{
-		return array(
+	    return [
 			GDT_User::make('gpg_uid')->primary(),
-			GDT_Message::make('gpg_pubkey')->caseS()->ascii()->nowysiwyg()->max(65535)->label('gpg_pubkey'),
-		);
+			GDT_Text::make('gpg_pubkey')->caseS()->ascii()->nowysiwyg()->max(65535)->label('gpg_pubkey'),
+	    ];
 	}
 
 	##############

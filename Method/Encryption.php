@@ -10,12 +10,11 @@ use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Mail\Mail;
 use GDO\MailGPG\GDO_PublicKey;
-use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Link;
 use GDO\User\GDO_User;
 use GDO\File\FileUtil;
-use GDO\Core\GDOException;
+
 /**
  * Setup GPG Mail Encryption.
  * Sends a test mail before key is saved.
