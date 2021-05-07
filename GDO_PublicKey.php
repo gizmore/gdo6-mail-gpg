@@ -5,7 +5,7 @@ use GDO\Core\GDO;
 use GDO\User\GDO_User;
 use GDO\User\GDT_User;
 use GDO\Core\Logger;
-use GDO\DB\GDT_Text;
+use GDO\UI\GDT_Textarea;
 
 /**
  * Cryptographic public keys for users.
@@ -23,7 +23,7 @@ final class GDO_PublicKey extends GDO
 	{
 	    return [
 			GDT_User::make('gpg_uid')->primary(),
-			GDT_Text::make('gpg_pubkey')->caseS()->ascii()->max(65535)->label('gpg_pubkey'),
+			GDT_Textarea::make('gpg_pubkey')->caseS()->ascii()->max(65535)->label('gpg_pubkey'),
 	    ];
 	}
 

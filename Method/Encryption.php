@@ -94,7 +94,7 @@ final class Encryption extends MethodForm
 		
 		if ($file)
 		{
-			$file_content = file_get_contents($file->path);
+			$file_content = file_get_contents($file->getPath());
 		}
 		else
 		{
