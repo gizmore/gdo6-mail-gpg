@@ -23,7 +23,7 @@ final class GDO_PublicKey extends GDO
 	{
 	    return [
 			GDT_User::make('gpg_uid')->primary(),
-			GDT_Text::make('gpg_pubkey')->caseS()->ascii()->nowysiwyg()->max(65535)->label('gpg_pubkey'),
+			GDT_Text::make('gpg_pubkey')->caseS()->ascii()->max(65535)->label('gpg_pubkey'),
 	    ];
 	}
 
