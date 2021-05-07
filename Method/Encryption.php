@@ -33,7 +33,6 @@ final class Encryption extends MethodForm
 	
 	public function execute()
 	{
-		
 		$this->key = GDO_PublicKey::getKeyForUser(GDO_User::current());
 
 		Module_Account::instance()->renderAccountTabs();
@@ -48,7 +47,7 @@ final class Encryption extends MethodForm
 
 	public function createForm(GDT_Form $form)
 	{
-		$form->addField(GDT_Panel::make('info')->html(t('infob_gpg_upload')));
+		$form->addField(GDT_Panel::make('info')->text('infob_gpg_upload'));
 		$form->addField(GDO_PublicKey::table()->gdoColumn('gpg_pubkey'));
 		$form->addField(GDT_File::make('gpg_file')->label('gpg_file')->action($this->href()));
 		$form->addField(GDT_AntiCSRF::make());
