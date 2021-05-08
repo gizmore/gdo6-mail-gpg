@@ -108,7 +108,7 @@ final class Encryption extends MethodForm
 		{
 			$response = $this->error('err_gpg_not_start_with_begin');
 		}
-		elseif (!file_put_contents($outfile, $file_content, GWF_CHMOD))
+		elseif (!file_put_contents($outfile, $file_content, GDO_CHMOD))
 		{
 			$response = $this->error('err_write_file');
 		}
@@ -131,8 +131,8 @@ final class Encryption extends MethodForm
 			return $this->error('err_user_has_no_email');
 		}
 		$mail = new Mail();
-		$mail->setSender(GWF_BOT_EMAIL);
-		$mail->setSenderName(GWF_BOT_NAME);
+		$mail->setSender(GDO_BOT_EMAIL);
+		$mail->setSenderName(GDO_BOT_NAME);
 		$mail->setReceiver($email);
 		$mail->setGPGKey($fingerprint);
 		$mail->setSubject(t('mail_subj_gpg', [sitename()]));
