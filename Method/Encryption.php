@@ -40,7 +40,7 @@ final class Encryption extends MethodForm
 		
 		if (isset($_POST['btn_delete']))
 		{
-			return $this->onDelete()->add(parent::execute());
+			return $this->onDelete()->addField(parent::execute());
 		}
 		return parent::execute();
 	}
@@ -121,7 +121,7 @@ final class Encryption extends MethodForm
 			$response = $this->sendGPGMail($user, $fingerprint);
 		}
 		
-		return $response->add($this->renderPage());
+		return $response->addField($this->renderPage());
 	}
 	
 	private function sendGPGMail(GDO_User $user, $fingerprint)
