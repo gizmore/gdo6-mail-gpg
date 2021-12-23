@@ -38,7 +38,7 @@ final class Encryption extends MethodForm
 		Module_Account::instance()->renderAccountTabs();
 		Settings::make()->navModules();
 		
-		if (isset($_POST['btn_delete']))
+		if (isset($_REQUEST[$this->getForm()->name]['btn_delete']))
 		{
 			return $this->onDelete()->addField(parent::execute());
 		}
